@@ -1,37 +1,50 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Template.CleanArchitecture.Application.Contracts;
 using Template.CleanArchitecture.Domain.Entities;
 
+namespace Template.CleanArchitecture.Presistance.Context;
 
-namespace Template.CleanArchitecture.Presistance.Context
+public partial class DatabaseService : DbContext, IDatabaseService
 {
-    public partial class DatabaseService : DbContext, IDataBaseService
+    public DatabaseService()
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
-        public DbSet<PhoneNumberType> PhoneNumberTypes { get; set; }
-
-        public DatabaseService()
-        {
-        }
-
-        public DatabaseService(DbContextOptions<DatabaseService> options)
-            : base(options)
-        {
-            Database.EnsureCreated();
-
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer("Server=.;Initial Catalog=SQlDBPhoneBook;Integrated Security=true;TrustServerCertificate=True;");
-        }
     }
+
+    public DatabaseService(DbContextOptions<DatabaseService> options)
+        : base(options)
+    {
+    }
+
+    public virtual DbSet<PhoneNumberTypes> PhoneNumberTypes { get; set; }
+
+    public virtual DbSet<PhoneNumbers> PhoneNumbers { get; set; }
+
+    public virtual DbSet<Users> Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer("Server=.;Initial Catalog=SQlDBPhoneBook;Integrated Security=true;TrustServerCertificate=True;");
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<PhoneNumberTypes>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+        });
+
+        modelBuilder.Entity<PhoneNumbers>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+        });
+
+        modelBuilder.Entity<Users>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+        });
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

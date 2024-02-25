@@ -10,13 +10,15 @@ using Template.CleanArchitecture.Domain.Entities;
 namespace Template.CleanArchitecture.Application.Contracts
 {
 
-    public interface IDataBaseService
+    public interface IDatabaseService
     {
         int DBSaveChanges();
         Task<int> DBSaveChangesAsync(CancellationToken cancellationToken = default);
-        DbSet<User> Users { get; set; }
-        DbSet<PhoneNumber> PhoneNumbers { get; set; }
-        DbSet<PhoneNumberType> PhoneNumberTypes { get; set; }
+         DbSet<PhoneNumberTypes> PhoneNumberTypes { get; set; }
+
+        DbSet<PhoneNumbers> PhoneNumbers { get; set; }
+
+        DbSet<Users> Users { get; set; }
     }
 
 }
