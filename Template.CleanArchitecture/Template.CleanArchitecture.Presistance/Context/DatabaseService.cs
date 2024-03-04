@@ -6,16 +6,13 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Template.CleanArchitecture.Application.Contracts;
-using Template.CleanArchitecture.Domain.Entities;
 
 
 namespace Template.CleanArchitecture.Presistance.Context
 {
     public partial class DatabaseService : DbContext, IDataBaseService
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
-        public DbSet<PhoneNumberType> PhoneNumberTypes { get; set; }
+       
 
         public DatabaseService()
         {

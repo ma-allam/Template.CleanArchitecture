@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Template.CleanArchitecture.Domain\Template.CleanArchitecture.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Business\" />
+  </ItemGroup>
+
 </Project>

@@ -4,6 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>24a7eeca-7664-4c06-ade8-a1145bbabfba</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,9 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Template.CleanArchitecture.Application\Template.CleanArchitecture.Application.csproj" />
-    <ProjectReference Include="..\Template.CleanArchitecture.Core\Template.CleanArchitecture.Core.csproj" />
-    <ProjectReference Include="..\Template.CleanArchitecture.Presistance\Template.CleanArchitecture.Presistance.csproj" />
+	  <ProjectReference Include="..\Template.CleanArchitecture.Application\Template.CleanArchitecture.Application.csproj" />
+	  <ProjectReference Include="..\Template.CleanArchitecture.Core\Template.CleanArchitecture.Core.csproj" />
+	  <ProjectReference Include="..\Template.CleanArchitecture.Presistance\Template.CleanArchitecture.Presistance.csproj" />
   </ItemGroup>
 
 </Project>
